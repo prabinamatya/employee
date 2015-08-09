@@ -1,5 +1,6 @@
-package com.prabin.employee.entity;
+package com.prabin.employee.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,15 +12,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "employees")
-public class Employees {
+public class Employees implements Serializable {
 
-	public enum Gender {
-		M, F
-	};
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
+	@Column(name = "emp_no")
+	private int employeeNumber;
 
 	@Column(name = "birth_date")
 	private Date birthDate;
@@ -29,8 +31,6 @@ public class Employees {
 
 	@Column(name = "last_name")
 	private String lastName;
-
-	private Gender gender;
 
 	@Column(name = "hire_date")
 	private Date hireDate;
@@ -67,12 +67,13 @@ public class Employees {
 		this.hireDate = hireDate;
 	}
 
-	public Gender getGender() {
-		return gender;
+	public int getEmployeeNumber() {
+		return employeeNumber;
 	}
 
-	public void setGender(Gender gender) {
-		this.gender = gender;
+	public void setEmployeeNumber(int employeeNumber) {
+		this.employeeNumber = employeeNumber;
 	}
+	
 
 }
